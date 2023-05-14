@@ -6,7 +6,7 @@ import Upload from '~/pages/Upload';
 
 const publicRoutes = [
     { path: '/', component: Home },
-    { path: '/upload', component: Upload },
+    { path: '/training', component: Upload },
 ];
 
 const privateRoutes = [];
