@@ -1,0 +1,81 @@
+.card {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    width: 500px;
+    height: auto;
+    border: 1px solid rgb(214, 216, 218);
+    border-radius: 6px;
+    background-color: rgba(22, 24, 35, 0.03);
+    .tags-input {
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: wrap;
+        width: 500px;
+        height: auto;
+        padding: 0 8px;
+        border-radius: 6px;
+        margin: 20px;
+        ul {
+            display: flex;
+            flex: wrap;
+            padding: 0;
+            height: auto;
+            margin-right: 12px;
+            li {
+                width: auto;
+                height: 32px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: #fff;
+                background-color: #0052cc;
+                margin-left: 12px;
+                border-radius: 6px;
+                span {
+                    margin-left: 12px;
+                }
+                .material-icons {
+                    display: inline-flex;
+                    align-items: center;
+                    background-color: #fff;
+                    border-radius: 50%;
+                    max-width: 20px;
+                    color: #0052cc;
+                    cursor: pointer;
+                    margin-left: 12px;
+                    margin-right: 12px;
+                }
+            }
+        }
+    }
+
+    .content {
+        font-size: 2.5rem;
+        margin: 0 20px 20px 20px;
+    }
+}
+
+.list-content {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    width: auto;
+    height: auto;
+    border: 1px solid rgb(214, 216, 218);
+    border-radius: 6px;
+    background-color: rgba(22, 24, 35, 0.03);
+    .item-content {
+        cursor: pointer;
+        &:hover {
+            background-color: #72acf6;
+        }
+        .content {
+            width: auto;
+            padding: 9px 16px;
+        }
+        .tag {
+            padding: 9px 16px;
+        }
+    }
+}

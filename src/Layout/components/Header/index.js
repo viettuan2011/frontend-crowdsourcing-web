@@ -87,9 +87,9 @@ function Header() {
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
-                <div className={cx('logo')}>
+                <Link to="/" className={cx('logo')}>
                     <Image src={images.logo} alt="project" />
-                </div>
+                </Link>
                 <div className={cx('actions')}>
                     <MenuHeader
                         onClick={HandleMenuItem}
@@ -110,11 +110,11 @@ function Header() {
                         </Menu>
                     ) : (
                         <>
-                            <Button primary to="/login">
-                                Login
+                            <Button text to="/login">
+                                Sign in
                             </Button>
-                            <Button text to="/register" rightIcon={<FontAwesomeIcon icon={faArrowRightLong} />}>
-                                Register
+                            <Button primary to="/register" rightIcon={<FontAwesomeIcon icon={faArrowRightLong} />}>
+                                Sign up
                             </Button>
                         </>
                     )}
