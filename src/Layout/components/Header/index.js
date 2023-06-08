@@ -16,19 +16,37 @@ const cx = classNames.bind(styles);
 const itemMenus = [
     {
         label: (
-            <Link to="/training" style={{ fontSize: 20 }}>
-                Luyện tập
+            <Link to="/action" style={{ fontSize: 20 }}>
+                Hoạt động
             </Link>
         ),
-        key: 'training',
+        key: 'action',
     },
     {
         key: 'certification',
         label: (
             <Link to="/certification" style={{ fontSize: 20 }}>
-                Chứng chỉ
+                Dự án
             </Link>
         ),
+        children: [
+            {
+                key: 'project:1',
+                label: (
+                    <Link to="/project/doing" style={{ fontSize: 20 }}>
+                        Đang làm
+                    </Link>
+                ),
+            },
+            {
+                key: 'project:2',
+                label: (
+                    <Link to="/project/done" style={{ fontSize: 20 }}>
+                        Đã hoàn thành
+                    </Link>
+                ),
+            },
+        ],
     },
     {
         key: 'feedback',
@@ -47,7 +65,7 @@ const itemMenus = [
         key: 'about',
         label: (
             <Link to="/about" style={{ fontSize: 20 }}>
-                Về chúng tôi
+                About
             </Link>
         ),
     },
@@ -101,13 +119,16 @@ function Header() {
 
                 <div className={cx('auth')}>
                     {currentUser ? (
-                        <Menu items={userMenu}>
-                            <Image
-                                className={cx('user-avatar')}
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYmkp9a2rrD1Sskb9HLt5mDaTt4QaIs8CcBg&usqp=CAU"
-                                alt="Nguyen Van A"
-                            />
-                        </Menu>
+                        <>
+                            <Link>Tran Viet Tuan</Link>
+                            <Menu items={userMenu}>
+                                <Image
+                                    className={cx('user-avatar')}
+                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYmkp9a2rrD1Sskb9HLt5mDaTt4QaIs8CcBg&usqp=CAU"
+                                    alt="Nguyen Van A"
+                                />
+                            </Menu>
+                        </>
                     ) : (
                         <>
                             <Button text to="/login">

@@ -1,11 +1,15 @@
 .wrapper {
+    position: fixed;
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: 10px;
+    top: 0;
+    left: 0;
+    z-index: 10;
     height: var(--default-layout-header-height);
-    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
+    //box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12);
     background-color: var(--white);
+    box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 }
 
 .inner {
@@ -14,7 +18,7 @@
     padding: 0 var(--default-layout-horizontal-spacer);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    //justify-content: space-between;
 }
 
 .logo {
@@ -30,6 +34,18 @@
 .actions {
     display: flex;
     align-items: center;
+    justify-self: start;
+    width: auto;
+    margin-left: 16px;
+    height: var(--default-layout-header-height);
+}
+
+//auth
+.auth {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 5%;
 }
 
 //user-avatar

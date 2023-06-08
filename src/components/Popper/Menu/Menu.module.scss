@@ -30,12 +30,16 @@
     padding-bottom: 8px;
 }
 
+.menu-popper {
+    overflow-y: auto;
+}
 //Header
 
 .Header {
     position: relative;
     height: 50px;
     top: -8px;
+    flex-shrink: 0;
 }
 .back-btn {
     width: 50px;

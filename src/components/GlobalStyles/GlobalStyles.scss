@@ -1,4 +1,5 @@
 @import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
 
 :root {
     --primary: #72acf6;
@@ -6,10 +7,11 @@
     --white: #fff;
     --text-color: #161823;
 
-    --font-family: 'ProximaNova', sans-serif;
+    // --font-family: 'ProximaNova', sans-serif;
+    --font-family: 'Play', sans-serif;
 
     // Default layout
-    --default-layout-header-height: 50px;
+    --default-layout-header-height: 60px;
     --default-layout-width: 95%;
     --default-layout-horizontal-spacer: 16px;
 }
@@ -95,6 +97,10 @@ a {
 
 // Custom tippy tooltip
 body {
+    .ant-menu {
+        font-weight: 300;
+        font-size: 1.6rem;
+    }
     .tippy-box {
         border-radius: 9px;
         font-weight: 600;
