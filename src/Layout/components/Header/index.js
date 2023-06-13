@@ -5,7 +5,10 @@ import classNames from 'classnames/bind';
 import { Menu as MenuHeader } from 'antd';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 
+import AuthContext from '~/context/AuthContext';
+import config from '~/config';
 import styles from './Header.module.scss';
 import Image from '~/components/Image';
 import images from '~/assets/images';
@@ -16,7 +19,7 @@ const cx = classNames.bind(styles);
 const itemMenus = [
     {
         label: (
-            <Link to="/action" style={{ fontSize: 20 }}>
+            <Link to={config.routes.action} style={{ fontSize: 20 }}>
                 Hoạt động
             </Link>
         ),
@@ -76,7 +79,7 @@ function Header() {
     const HandleMenuItem = (e) => {
         setCurrentMenuItem(e.key);
     };
-    const currentUser = false;
+    const { user } = useContext(AuthContext);
 
     const userMenu = [
         {
@@ -118,9 +121,9 @@ function Header() {
                 </div>
 
                 <div className={cx('auth')}>
-                    {currentUser ? (
+                    {user ? (
                         <>
-                            <Link>Tran Viet Tuan</Link>
+                            <Link>{user.username}</Link>
                             <Menu items={userMenu}>
                                 <Image
                                     className={cx('user-avatar')}

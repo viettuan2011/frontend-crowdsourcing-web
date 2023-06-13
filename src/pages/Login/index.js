@@ -1,14 +1,27 @@
-// import { useState } from 'react';
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import React, { useContext } from 'react';
+import AuthContext from '~/context/AuthContext';
 
-import classNames from 'classnames/bind';
-import styles from './Login.module.scss';
+function LoginPage() {
+    const { loginUser } = useContext(AuthContext);
 
-const cx = classNames.bind(styles);
-
-function Login() {
-    return <div className={cx('wrapper')}></div>;
+    return (
+        <div>
+            <h1>Login</h1>
+            <form onSubmit={loginUser}>
+                <label>
+                    Username:
+                    <input type="text" name="username" />
+                </label>
+                <br />
+                <label>
+                    Password:
+                    <input type="password" name="password" />
+                </label>
+                <br />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    );
 }
 
-export default Login;
+export default LoginPage;
