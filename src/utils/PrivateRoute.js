@@ -4,7 +4,7 @@ import AuthContext from '~/context/AuthContext';
 
 function PrivateRouteWrapper({ children }) {
     const { user } = useContext(AuthContext);
-    console.log(useContext(AuthContext));
+    // console.log(useContext(AuthContext));
     if (!user) {
         return <Navigate to="/login" />;
     }

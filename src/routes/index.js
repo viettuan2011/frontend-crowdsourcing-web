@@ -7,6 +7,7 @@ import Upload from '~/pages/Upload';
 import Login from '~/pages/Login';
 import Register from '~/pages/Register';
 import Action from '~/pages/Action';
+import Logout from '~/pages/Logout';
 
 const publicRoutes = [
     { path: config.routes.home, component: Home },
@@ -15,6 +16,9 @@ const publicRoutes = [
     { path: config.routes.register, component: Register, layout: null },
 ];
 
-const privateRoutes = [{ path: config.routes.action, component: Action }];
+const privateRoutes = [
+    { path: config.routes.action, component: Action },
+    { path: config.routes.logout, component: Logout, layout: null },
+];
 
 export { publicRoutes, privateRoutes };
