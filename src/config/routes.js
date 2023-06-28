@@ -5,6 +5,7 @@ const routes = {
     login: '/login',
     register: '/register',
     logout: '/logout',
+    actiontest: '/actiontest',
 };
 
 export default routes;

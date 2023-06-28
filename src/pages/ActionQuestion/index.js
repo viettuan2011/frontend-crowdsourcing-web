@@ -1,132 +1,102 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faArrowRightLong, faArrowLeftLong } from '@fortawesome/free-solid-svg-icons';
+import {
+    faXmark,
+    faArrowRightLong,
+    faArrowLeftLong,
+    faAngleLeft,
+    faAngleRight,
+} from '@fortawesome/free-solid-svg-icons';
 
 import classNames from 'classnames/bind';
 import styles from './ActionQuestion.module.scss';
 import Button from '~/components/Button';
+import useAxios from '~/utils/useAxios';
 
 const cx = classNames.bind(styles);
 
 const listContent = [
     {
         id: 1,
-        tag: [],
-        content:
-            'W3Schools is optimized for learning and training.but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,but we cannot warrant full correctness of all content. While using W3Schools,',
+        tag: 'Yes',
+        question:
+            'How old are you ? How old are you ? How old are you ? How old are you ? How old are you ? How old are you ? How old are you ?How old are you ?How old are you ? How old are you ? How old are you ?',
+        answer: 'twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two',
     },
     {
         id: 2,
-        tag: [],
-        content: 'Examples might be simplified to improve reading and learning. ',
+        tag: null,
+        question: '2How old are you ?',
+        answer: '2twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two',
     },
     {
         id: 3,
-        tag: [],
-        content: 'Tutorials, references, and examples are constantly reviewed to avoid errors',
+        tag: null,
+        question: '3How old are you ?',
+        answer: '3twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two',
     },
     {
         id: 4,
-        tag: [],
-        content: 'but we cannot warrant full correctness of all content. While using W3Schools, ',
+        tag: null,
+        question: '4How old are you ?',
+        answer: '4twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two',
     },
     {
         id: 5,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 6,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 7,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 8,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 9,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 10,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 11,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 12,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
-    },
-    {
-        id: 13,
-        tag: [],
-        content: 'you agree to have read and accepted our terms of use, cookie and privacy policy.',
+        tag: null,
+        question: '5How old are you ?',
+        answer: '5twenty two twenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty twotwenty two',
     },
 ];
 
-const listLabel = ['Ajax', 'Nodejs', 'Python', 'PHP'];
-
 function ActionQuestion() {
-    const [id, setId] = useState(1);
-    const [tags, setTags] = useState(listContent[0].tag);
-    const [content, setContent] = useState(listContent[0].content);
+    const [tag, setTag] = useState(listContent[0].tag);
+    const [content, setContent] = useState(listContent[0]);
 
-    const handleContent = (id, valueContent, listTag) => {
-        if (listTag.length !== 0) {
-            setTags(listTag);
+    const handleContent = (item) => {
+        if (item.tag) {
+            setTag(item.tag);
         } else {
-            setTags([]);
+            setTag(null);
         }
-        setId(id);
-        setContent(valueContent);
+        setContent(item);
     };
 
-    const removeTags = (tagToRemove) => {
-        setTags(tags.filter((tag) => tag !== tagToRemove));
-        let result = listContent.find((item) => item.id === id);
-        result.tag.splice(
-            result.tag.findIndex((tag) => tag === tagToRemove),
-            1,
-        );
-        //console.log(result.tag);
-    };
-    const addTags = (e) => {
-        if (!tags.includes(e.target.value)) {
-            setTags([...tags, e.target.value]);
-            let result = listContent.find((item) => item.id === id);
-            result.tag.push(e.target.value);
-            console.log(listContent);
+    let api = useAxios();
+
+    let getNotes = async () => {
+        let response = await api.get('/api/projects/data/?project=1');
+
+        console.log(response);
+
+        if (response.status === 200) {
+            console.log('error');
         }
-        e.target.value = '';
+    };
+
+    const addTag = (newtag) => {
+        setTag(newtag);
+        let result = listContent.find((item) => item.id === content.id);
+        result.tag = newtag;
+    };
+
+    const printList = () => {
+        getNotes();
+        console.log(listContent);
     };
 
     const handleRightItem = () => {
-        if (id !== listContent.length) {
-            let nextItem = listContent.find((item) => item.id === id + 1);
-            setId(id + 1);
-            setTags(nextItem.tag);
-            setContent(nextItem.content);
+        if (content.id !== listContent.length) {
+            let nextItem = listContent.find((item) => item.id === content.id + 1);
+            setTag(nextItem.tag);
+            setContent(nextItem);
         }
     };
     const handleLeftItem = () => {
-        if (id !== 1) {
-            let nextItem = listContent.find((item) => item.id === id - 1);
-            setId(id - 1);
-            setTags(nextItem.tag);
-            setContent(nextItem.content);
+        if (content.id !== 1) {
+            let nextItem = listContent.find((item) => item.id === content.id - 1);
+            setTag(nextItem.tag);
+            setContent(nextItem);
         }
     };
     // useEffect(() => {
@@ -138,44 +108,27 @@ function ActionQuestion() {
         <div className={cx('wrapper')}>
             <div className={cx('container')}>
                 <div className={cx('card')}>
-                    <div className={cx('card-title')}>
-                        <ul>
-                            {tags.map((tag, index) => (
-                                <li key={index} className={cx('tag')}>
-                                    <span className={cx('tag-content')}>{tag}</span>
-                                    <span className={cx('tag-icon')} onClick={() => removeTags(tag)}>
-                                        <FontAwesomeIcon icon={faXmark}></FontAwesomeIcon>
-                                    </span>
-                                </li>
-                            ))}
-                        </ul>
-                        <select className={cx('card-select-tag')} onChange={(e) => addTags(e)}>
-                            <option value="">Select label</option>
-                            {listLabel.map((label, index) => (
-                                <option key={index} value={label}>
-                                    {label}
-                                </option>
-                            ))}
-                        </select>
+                    <div className={cx('card-question')}>
+                        <u>Question</u>: {content.question}
                     </div>
-                    <div className={cx('card-content')}>{content}</div>
-                    <div className={cx('card-ActionQuestion')}>
-                        <Button
-                            className={cx('button-left')}
-                            outline
-                            leftIcon={<FontAwesomeIcon icon={faArrowLeftLong} />}
-                            onClick={handleLeftItem}
-                        >
-                            Truoc
+                    <div className={cx('card-answer')}>
+                        <u>Answer</u>: {content.answer}
+                    </div>
+                    <div className={cx('card-select')}>
+                        <Button outline className={cx('button-no')} onClick={() => addTag('No')}>
+                            No
                         </Button>
-                        <Button
-                            className={cx('button-right')}
-                            outline
-                            rightIcon={<FontAwesomeIcon icon={faArrowRightLong} />}
-                            onClick={handleRightItem}
-                        >
-                            Tiep
+                        <Button primary className={cx('button-yes')} onClick={() => addTag('Yes')}>
+                            Yes
                         </Button>
+                    </div>
+                    <div className={cx('card-action')}>
+                        <span className={cx('button-left')} onClick={handleLeftItem}>
+                            <FontAwesomeIcon icon={faAngleLeft} />
+                        </span>
+                        <span className={cx('button-right')} onClick={handleRightItem}>
+                            <FontAwesomeIcon icon={faAngleRight} />
+                        </span>
                     </div>
                 </div>
                 <div className={cx('table-wrapper')}>
@@ -186,20 +139,18 @@ function ActionQuestion() {
                     <div className={cx('table')}>
                         <table>
                             <tbody>
-                                {listContent.map((item) => (
+                                {listContent.map((item, index) => (
                                     <tr key={item.id} className={cx('table-content')}>
                                         <td
-                                            className={cx(`${id === item.id ? 'col-content-active' : 'col-content'}`)}
-                                            onClick={() => handleContent(item.id, item.content, item.tag)}
+                                            className={cx(
+                                                `${content.id === item.id ? 'col-content-active' : 'col-content'}`,
+                                            )}
+                                            onClick={() => handleContent(item)}
                                         >
-                                            {item.id}
+                                            {index + 1}
                                         </td>
                                         <td className={cx('col-tag')}>
-                                            {item.tag.map((item, index) => (
-                                                <span key={index} className={cx('col-tag-label')}>
-                                                    {item}
-                                                </span>
-                                            ))}
+                                            <span className={cx('col-tag-label')}>{item.tag}</span>
                                         </td>
                                     </tr>
                                 ))}
@@ -208,7 +159,9 @@ function ActionQuestion() {
                     </div>
                     <div className={cx('action')}>
                         <Button outline>Huy</Button>
-                        <Button primary>Hoan thanh</Button>
+                        <Button primary onClick={printList}>
+                            Hoan thanh
+                        </Button>
                     </div>
                 </div>
             </div>
