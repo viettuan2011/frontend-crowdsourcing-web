@@ -3,24 +3,10 @@ import styles from './Home.module.scss';
 import Button from '~/components/Button';
 import Image from '~/components/Image';
 import images from '~/assets/images';
-import useAxios from '~/utils/useAxios';
-import { useEffect } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Home() {
-    let api = useAxios();
-
-    useEffect(() => {
-        getNotes();
-    }, []);
-
-    let getNotes = async () => {
-        let response = await api.get('/api/projects/projects');
-
-        console.log(response.data);
-    };
-
     return (
         <div className={cx('wrapper')}>
             <div className={cx('content')}>

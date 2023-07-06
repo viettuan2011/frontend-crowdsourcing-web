@@ -19,7 +19,7 @@ const cx = classNames.bind(styles);
 const itemMenus = [
     {
         label: (
-            <Link to={config.routes.action} style={{ fontSize: 20 }}>
+            <Link to={config.routes.userdashboard} style={{ fontSize: 20 }}>
                 Hoạt động
             </Link>
         ),

@@ -1,17 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-    faXmark,
-    faArrowRightLong,
-    faArrowLeftLong,
-    faAngleLeft,
-    faAngleRight,
-} from '@fortawesome/free-solid-svg-icons';
+import { faAngleLeft, faAngleRight, faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import classNames from 'classnames/bind';
 import styles from './ActionQuestion.module.scss';
 import Button from '~/components/Button';
-import useAxios from '~/utils/useAxios';
 
 const cx = classNames.bind(styles);
 
@@ -62,18 +55,6 @@ function ActionQuestion() {
         setContent(item);
     };
 
-    let api = useAxios();
-
-    let getNotes = async () => {
-        let response = await api.get('/api/projects/data/?project=1');
-
-        console.log(response);
-
-        if (response.status === 200) {
-            console.log('error');
-        }
-    };
-
     const addTag = (newtag) => {
         setTag(newtag);
         let result = listContent.find((item) => item.id === content.id);
@@ -81,7 +62,6 @@ function ActionQuestion() {
     };
 
     const printList = () => {
-        getNotes();
         console.log(listContent);
     };
 
@@ -115,10 +95,20 @@ function ActionQuestion() {
                         <u>Answer</u>: {content.answer}
                     </div>
                     <div className={cx('card-select')}>
-                        <Button outline className={cx('button-no')} onClick={() => addTag('No')}>
+                        <Button
+                            outline
+                            className={cx('button-no')}
+                            onClick={() => addTag('No')}
+                            rightIcon={tag === 'No' && <FontAwesomeIcon icon={faCheck} />}
+                        >
                             No
                         </Button>
-                        <Button primary className={cx('button-yes')} onClick={() => addTag('Yes')}>
+                        <Button
+                            primary
+                            className={cx('button-yes')}
+                            onClick={() => addTag('Yes')}
+                            rightIcon={tag === 'Yes' && <FontAwesomeIcon icon={faCheck} />}
+                        >
                             Yes
                         </Button>
                     </div>

@@ -1,0 +1,25 @@
+.wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.button-logout {
+    background-color: rgb(231, 64, 64);
+    cursor: pointer;
+    &:hover {
+        opacity: 0.5;
+    }
+    color: white;
+    padding: 10px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.button-cancel {
+    cursor: pointer;
+    &:hover {
+        opacity: 0.5;
+    }
+    color: black;
+    padding: 10px;
+}

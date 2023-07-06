@@ -1,11 +1,13 @@
 const routes = {
     home: '/',
-    action: '/action',
     training: '/training',
     login: '/login',
     register: '/register',
     logout: '/logout',
-    actiontest: '/actiontest',
+    action: '/action/:projectId',
+    actiontest: '/actiontest/:projectId',
+    userdashboard: '/dashboard',
+    actionRealisticLabeling: '/action/RealisticLabeling/:projectId',
 };
 
 export default routes;
